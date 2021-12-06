@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "lib": [
+      "es5",
+      "es6",
+      "DOM"
+    ],
+    "module": "es6",
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ],
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "$schema": "https://json.schemastore.org/tsconfig"
+}
+  

@@ -1,0 +1,11 @@
+.parcel-cache
+.vscode
+.DS_Store
+
+coverage
+dist
+node_modules
+tmp
+
+npm-debug.log*
+yarn-error.log
