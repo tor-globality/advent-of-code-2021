@@ -7,7 +7,8 @@
   "scripts": {
     "run:01": "nodemon 01/index.ts",
     "run:02": "nodemon 02/index.ts",
-    "run:03": "nodemon 03/index.ts"
+    "run:03": "nodemon 03/index.ts",
+    "run:04": "nodemon 04/index.ts"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.171",
