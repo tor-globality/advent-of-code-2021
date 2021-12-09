@@ -11,6 +11,7 @@ type VentMap = Plot[][];
 
 const data5: Line[] = require('fs').readFileSync('data/05.txt').toString().trim().split('\n');
 const compose5 = require('compose-function');
+let USE_DIAGONALS = false;
 
 console.log('There are %d lines to plot', data5.length);
 
@@ -44,6 +45,16 @@ const getPointsFromDiff = (start: number, end: number): number[] => {
     return [...Array(distance)].map((_, i) => isNegative ? start - i : start + i)
 }
 
+const getPointsFromDiagonal = (start: Coordinates, end: Coordinates): Coordinates[] => {
+    const diffXPoints = getPointsFromDiff(start.x, end.x);
+    const diffYPoints = getPointsFromDiff(start.y, end.y);
+
+    return diffXPoints.map((x, i) => ({
+        x,
+        y: diffYPoints[i],
+    }));
+}
+
 const plotPoint = ({ x, y }: Coordinates, map: VentMap) => {
     map[y][x] += 1;
     return map;
@@ -57,11 +68,15 @@ const plotLine = (line: Line) => (map: VentMap) => {
         for(let point of getPointsFromDiff(start, end)) {
             plotPoint({ x: point, y}, map);
         }
-    }
-    if(isVertLine(lineCoords)) {
+    } else if(isVertLine(lineCoords)) {
         const [{ x, y: start }, { y: end }] = lineCoords;
         for(let point of getPointsFromDiff(start, end)) {
             plotPoint({ x, y: point }, map);
+        }
+    } else if (USE_DIAGONALS) {
+        const [start, end] = lineCoords;
+        for(let point of getPointsFromDiagonal(start, end)) {
+            plotPoint({ x: point.x, y: point.y }, map);
         }
     }
     return map;
@@ -75,21 +90,44 @@ const countOverlaps = (map: VentMap) => map.reduce(countRowOverlaps, 0)
 console.log('\n\n');
 console.time('Part 1');
 
-const map = createMap(1000);
-const lines = data5.slice();
+const map1 = createMap(1000);
+const lines1 = data5.slice();
 
-for(let line of lines) {
+for(let line of lines1) {
     const process = compose5(
         plotLine(line)
     )
 
-    process(map)
+    process(map1)
 }
 
 // renderMapSection(map)
-console.log('Part 1 Solution: %d', countOverlaps(map));
+console.log('Part 1 Solution: %d', countOverlaps(map1));
 
 
 console.timeEnd('Part 1');
+console.log('\n\n');
+
+console.log('\n\n');
+console.time('Part 2');
+
+const map2 = createMap(1000);
+const lines2 = data5.slice();
+
+USE_DIAGONALS = true;
+
+for(let line of lines2) {
+    const process = compose5(
+        plotLine(line)
+    )
+
+    process(map2)
+}
+
+// renderMapSection(map2)
+console.log('Part 2 Solution: %d', countOverlaps(map2));
+
+
+console.timeEnd('Part 2');
 console.log('\n\n');
 
