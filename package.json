@@ -11,8 +11,10 @@
     "run:04": "nodemon 04/index.ts"
   },
   "devDependencies": {
+    "@types/compose-function": "^0.0.30",
     "@types/lodash": "^4.14.171",
     "@types/node": "^16.11.11",
+    "compose-function": "^3.0.3",
     "lodash": "4.17.21",
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",
