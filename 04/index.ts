@@ -1,5 +1,5 @@
 const data4: string[] = require('fs').readFileSync('data/04.txt').toString().split('\n\n');
-const compose = require('compose-function');
+const compose4 = require('compose-function');
 
 console.log('------');
 console.log('Day 04');
@@ -73,7 +73,7 @@ console.log('\n\n');
 console.time('Part 1');
 
 for(let call of calls) {
-    const processBoard = compose(
+    const processBoard = compose4(
         markWinner(call),
         checkBingo,
         markCalled(call),
@@ -100,7 +100,7 @@ console.time('Part 2');
 
 for(let call of calls) {
     
-    const processBoard = compose(
+    const processBoard = compose4(
         markWinner(call),
         checkBingo,
         markCalled(call),
