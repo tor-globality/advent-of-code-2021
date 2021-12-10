@@ -1,8 +1,8 @@
-const data3: string[] = require('fs').readFileSync('data/03.txt').toString().split('\n');
-
 console.log('------');
 console.log('Day 03');
 console.log('------');
+
+const data3: string[] = require('fs').readFileSync('data/03.txt').toString().split('\n');
 
 console.log('There are %d entries in the data', data3.length);
 
@@ -71,3 +71,5 @@ console.log('Part 2 Solution: %d', parseInt(o2Rating[0], 2) * parseInt(co2Rating
 console.timeEnd('Part 2');
 
 console.log('\n\n');
+
+export {};
